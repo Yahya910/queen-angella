@@ -99,7 +99,7 @@ Asena.addCommand({ pattern: 'joox ?(.*)', fromMe: false, dontAddCommandList: tru
 
 
 
-Asena.addCommand({ pattern: 'twt ?(.*)', fromMe: false,  dontAddCommandList: true, desc: "download from twitter links" }, async (message, match) => {
+Asena.addCommand({ pattern: 'isu ?(.*)', fromMe: false,  dontAddCommandList: true, desc: "download from twitter links" }, async (message, match) => {
 
     const userName = match[1]
 
