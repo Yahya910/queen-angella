@@ -47,7 +47,7 @@ Project created by <a href="https://github.com/zim-bot">DripsMemes</a> to make i
 
 
   
-[![Run on Repl.it](https://repl.it/badge/github/quiec/whatsAlfa)](https://replit.com/@ReinhardTuna/zim-bot?v=1)
+[![Run on Repl.it](https://repl.it/badge/github/quiec/whatsAlfa)](https://replit.com/@KINGISURU/KING-ISUWA)
 <img src="https://fontmeme.com/permalink/220116/0c42dc0b64931810388ba399da55e927.png" alt="backwoods-logo-font" border="0"></a>  
 ### The Hard Method
 
