@@ -1,15 +1,10 @@
-/* Codded by @Ravindu Manoj
-
-Telegram: t.me/RavinduManoj
-Facebook: https://www.facebook.com/ravindu.manoj.79
-
+/* Copyright (C) 2020 Yusuf Usta.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-
-Whats bot - Ravindu Manoj
+WhatsAsena - Yusuf Usta
 */
 
-const QueenSew = require('../events');
+const Asena = require('../events');
 const {MessageType,Mimetype} = require('@adiwajshing/baileys');
 const translatte = require('translatte');
 const config = require('../config');
@@ -62,12 +57,12 @@ var dlang_other = ''
 var dlang_input = ''
 
 if (config.LANG == 'TR') {
-    dlang_dsc = 'රිප්ලයි කල මැසේජ් එකේ භාශාව අනුමාන කරයි.'
-    closer_res = 'ආසන්නතම පිලිතුර:'
-    dlang_lang = 'භාශාව:'
-    dlang_similarity = 'සමානතා:'
-    dlang_other = 'වෙනත් භාශා'
-    dlang_input = 'ක්‍රියාත්මක ඌ ඡේදය:'
+    dlang_dsc = 'Yanıtlanan mesajın dilini tahmin eder.'
+    closer_res = 'En Yakın Sonuç:'
+    dlang_lang = 'Dil:'
+    dlang_similarity = 'Benzerlik:'
+    dlang_other = 'Diğer Diller'
+    dlang_input = 'İşlenen Metin:'
 }
 if (config.LANG == 'EN') {
     dlang_dsc = 'Guess the language of the replied message.'
@@ -77,11 +72,67 @@ if (config.LANG == 'EN') {
     dlang_other = 'Other Languages'
     dlang_input = 'Processed Text:'
 }
+if (config.LANG == 'AZ') {
+    dlang_dsc = 'Cavablanan mesajın dilini təxmin edin.'
+    closer_res = 'Ən yaxın nəticə:'
+    dlang_lang = 'Dil:'
+    dlang_similarity = 'Bənzərlik:'
+    dlang_other = 'Başqa Dillər'
+    dlang_input = 'İşlənmiş Mətn:'
+}
+if (config.LANG == 'ML') {
+    dlang_dsc = 'മറുപടി നൽകിയ സന്ദേശത്തിന്റെ ഭാഷ ess ഹിക്കുക.'
+    closer_res = 'ഏറ്റവും അടുത്ത ഫലം:'
+    dlang_lang = 'നാവ്:'
+    dlang_similarity = 'സമാനത:'
+    dlang_other = 'മറ്റ് ഭാഷകൾ'
+    dlang_input = 'പ്രോസസ്സ് ചെയ്ത വാചകം:'
+}
+if (config.LANG == 'HI') {
+    dlang_dsc = 'उत्तर दिए गए संदेश की भाषा का अनुमान लगाएं'
+    closer_res = 'निकटतम परिणाम:'
+    dlang_lang = 'जुबान:'
+    dlang_similarity = 'समानता:'
+    dlang_other = 'अन्य भाषाएँ'
+    dlang_input = 'संसाधित पाठ:'
+}
+if (config.LANG == 'ES') {
+    dlang_dsc = 'Adivina el idioma del mensaje respondido.'
+    closer_res = 'Resultado más cercano:'
+    dlang_lang = 'Lengua:'
+    dlang_similarity = 'Semejanza:'
+    dlang_other = 'Otros idiomas:'
+    dlang_input = 'Texto procesado:'
+}
+if (config.LANG == 'PT') {
+    dlang_dsc = 'Adivinhe o idioma da mensagem respondida.'
+    closer_res = 'Resultado mais próximo:'
+    dlang_lang = 'Língua:'
+    dlang_similarity = 'Similaridade:'
+    dlang_other = 'Outras línguas'
+    dlang_input = 'Texto Processado:'
+}
+if (config.LANG == 'ID') {
+    dlang_dsc = 'Tebak bahasa pesan yang dibalas.'
+    closer_res = 'Hasil Terdekat:'
+    dlang_lang = 'Lidah:'
+    dlang_similarity = 'Kesamaan:'
+    dlang_other = 'Bahasa Lainnya'
+    dlang_input = 'Teks yang Diproses:'
+}
+if (config.LANG == 'RU') {
+    dlang_dsc = 'Угадай язык ответного сообщения.'
+    closer_res = 'Ближайший результат:'
+    dlang_lang = 'Язык:'
+    dlang_similarity = 'Сходствo:'
+    dlang_other = 'Другие языки'
+    dlang_input = 'Обработанный текст:'
+}
 
- if (config.PSW !== 'kingraviya') {
+
 if (config.WORKTYPE == 'private') {
 
-    QueenSew.newcmdaddtosew({pattern: 'trt(?: |$)(\\S*) ?(\\S*)', desc: Lang.TRANSLATE_DESC, usage: Lang.TRANSLATE_USAGE, fromMe: true}, (async (message, match) => {
+    Asena.addCommand({pattern: 'trt(?: |$)(\\S*) ?(\\S*)', desc: Lang.TRANSLATE_DESC, usage: Lang.TRANSLATE_USAGE, fromMe: true}, (async (message, match) => {
 
         if (!message.reply_message) {
             return await message.client.sendMessage(message.jid,Lang.NEED_REPLY,MessageType.text);
@@ -115,8 +166,56 @@ if (config.WORKTYPE == 'private') {
         succ_on = 'Antilink Opened Successfully!'
         succ_off = 'Antilink Closed Successfully!'
     }
-    
-    QueenSew.newcmdaddtosew({pattern: 'antilink ?(.*)', fromMe: true, desc: l_dsc, usage: '.antilink on / off' }, (async (message, match) => {
+    if (config.LANG == 'AZ') {
+        l_dsc = 'Antilink alətini aktivləşdirir.'
+        alr_on = 'Antilink hazırda açıqdır!'
+        alr_off = 'Antilink hazırda bağlıdır!'
+        succ_on = 'Antilink Uğurla Açıldı!'
+        succ_off = 'Antilink Uğurla Bağlandı!'
+    }
+    if (config.LANG == 'HI') {
+        l_dsc = 'एंटीलिंक टूल को सक्रिय करता है।'
+        alr_on = 'एंटीलिंक पहले से ही खुला है!'
+        alr_off = 'एंटीलिंक वर्तमान में बंद है!'
+        succ_on = 'एंटीलिंक सफलतापूर्वक खोला गया!'
+        succ_off = 'एंटीलिंक सफलतापूर्वक बंद!'
+    }
+    if (config.LANG == 'ML') {
+        l_dsc = 'ആന്റിലിങ്ക് ഉപകരണം സജീവമാക്കുന്നു.'
+        alr_on = 'ആന്റിലിങ്ക് ഇതിനകം തുറന്നു!'
+        alr_off = 'ആന്റിലിങ്ക് നിലവിൽ അടച്ചിരിക്കുന്നു!'
+        succ_on = 'ആന്റിലിങ്ക് വിജയകരമായി തുറന്നു!'
+        succ_off = 'ആന്റിലിങ്ക് വിജയകരമായി അടച്ചു!'
+    }
+    if (config.LANG == 'PT') {
+        l_dsc = 'Ativa a ferramenta Antilink.'
+        alr_on = 'O Antilink já está aberto!'
+        alr_off = 'Antilink está fechado no momento!'
+        succ_on = 'Antilink aberto com sucesso!'
+        succ_off = 'Antilink fechado com sucesso!'
+    }
+    if (config.LANG == 'RU') {
+        l_dsc = 'Активирует инструмент Antilink.'
+        alr_on = 'Антилинк уже открыт!'
+        alr_off = 'Антилинк сейчас закрыт!'
+        succ_on = 'Антилинк успешно открыт!'
+        succ_off = 'Антилинк успешно закрыт!'
+    }
+    if (config.LANG == 'ES') {
+        l_dsc = 'Activa la herramienta Antilink.'
+        alr_on = '¡Antilink ya está abierto!'
+        alr_off = '¡Antilink está cerrado actualmente!'
+        succ_on = '¡Antilink se abrió con éxito!'
+        succ_off = 'Antilink cerrado correctamente!'
+    }
+    if (config.LANG == 'ID') {
+        l_dsc = 'Mengaktifkan alat Antilink.'
+        alr_on = 'Antilink sudah terbuka!'
+        alr_off = 'Antilink saat ini ditutup!'
+        succ_on = 'Antilink Berhasil Dibuka!'
+        succ_off = 'Antilink Berhasil Ditutup!'
+    }
+    Asena.addCommand({pattern: 'antilink ?(.*)', fromMe: true, desc: l_dsc, usage: '.antilink on / off' }, (async (message, match) => {
         const anti_status = `${config.ANTİLİNK}`
         if (match[1] == 'on') {
             if (anti_status == 'true') {
@@ -164,8 +263,56 @@ if (config.WORKTYPE == 'private') {
         succ_on_bio = 'Autobio Opened Successfully!'
         succ_off_bio = 'Autobio Closed Successfully!'
     }
-    
-    QueenSew.newcmdaddtosew({pattern: 'autobio ?(.*)', fromMe: true, desc: auto_dsc, usage: '.autobio on / off' }, (async (message, match) => {
+    if (config.LANG == 'AZ') {
+        auto_dsc = 'Bio-ya canlı saat əlavə et!'
+        alr_on_bio = 'Autobio hazırda açıqdır!'
+        alr_off_bio = 'Autobio hazırda bağlıdır!'
+        succ_on_bio = 'Autobio Uğurla Açıldı!'
+        succ_off_bio = 'Autobio Uğurla Bağlandı!'
+    }
+    if (config.LANG == 'HI') {
+        auto_dsc = 'अपने बायो में लाइव घड़ी जोड़ें!'
+        alr_on_bio = 'Autobio पहले से ही खुला है!'
+        alr_off_bio = 'Autobio वर्तमान में बंद है!'
+        succ_on_bio = 'Autobio सफलतापूर्वक खोला गया!'
+        succ_off_bio = 'Autobio सफलतापूर्वक बंद!'
+    }
+    if (config.LANG == 'ML') {
+        auto_dsc = 'നിങ്ങളുടെ ബയോയിലേക്ക് തത്സമയ ക്ലോക്ക് ചേർക്കുക!'
+        alr_on_bio = 'Autobio ഇതിനകം തുറന്നു!'
+        alr_off_bio = 'Autobio നിലവിൽ അടച്ചിരിക്കുന്നു!'
+        succ_on_bio = 'Autobio വിജയകരമായി തുറന്നു!'
+        succ_off_bio = 'Autobio വിജയകരമായി അടച്ചു!'
+    }
+    if (config.LANG == 'PT') {
+        auto_dsc = 'Adicione um relógio ao vivo à sua biografia!'
+        alr_on_bio = 'O Autobio já está aberto!'
+        alr_off_bio = 'Autobio está fechado no momento!'
+        succ_on_bio = 'Autobio aberto com sucesso!'
+        succ_off_bio = 'Autobio fechado com sucesso!'
+    }
+    if (config.LANG == 'RU') {
+        auto_dsc = 'Добавьте живые часы в свою биографию!'
+        alr_on_bio = 'Autobio уже открыт!'
+        alr_off_bio = 'Autobio сейчас закрыт!'
+        succ_on_bio = 'Autobio успешно открыт!'
+        succ_off_bio = 'Autobio успешно закрыт!'
+    }
+    if (config.LANG == 'ES') {
+        auto_dsc = '¡Agrega un reloj en vivo a tu biografía!'
+        alr_on_bio = '¡Autobio ya está abierto!'
+        alr_off_bio = '¡Autobio está cerrado actualmente!'
+        succ_on_bio = '¡Autobio se abrió con éxito!'
+        succ_off_bio = 'Autobio cerrado correctamente!'
+    }
+    if (config.LANG == 'ID') {
+        auto_dsc = 'Tambahkan jam langsung ke bio Anda!'
+        alr_on_bio = 'Autobio sudah terbuka!'
+        alr_off_bio = 'Autobio saat ini ditutup!'
+        succ_on_bio = 'Autobio Berhasil Dibuka!'
+        succ_off_bio = 'Autobio Berhasil Ditutup!'
+    }
+    Asena.addCommand({pattern: 'autobio ?(.*)', fromMe: true, desc: auto_dsc, usage: '.autobio on / off' }, (async (message, match) => {
         const bio_status = `${config.AUTOBİO}`
         if (match[1] == 'on') {
             if (bio_status == 'true') {
@@ -194,7 +341,7 @@ if (config.WORKTYPE == 'private') {
             }
         }
     }));
-    QueenSew.newcmdaddtosew({pattern: 'detectlang$', fromMe: true, desc: dlang_dsc}, (async (message, match) => {
+    Asena.addCommand({pattern: 'detectlang$', fromMe: true, desc: dlang_dsc}, (async (message, match) => {
 
         if (!message.reply_message) return await message.client.sendMessage(message.jid,Lang.NEED_REPLY, MessageType.text)
         const msg = message.reply_message.text
@@ -219,7 +366,7 @@ if (config.WORKTYPE == 'private') {
         const rep_7 = res_1 + res_2 + res_3 + res_4 + res_5 + res_6
         await message.client.sendMessage(message.jid,rep_7,MessageType.text);
     }));
-    QueenSew.newcmdaddtosew({pattern: 'currency(?: ([0-9.]+) ([a-zA-Z]+) ([a-zA-Z]+)|$|(.*))', fromMe: true}, (async (message, match) => {
+    Asena.addCommand({pattern: 'currency(?: ([0-9.]+) ([a-zA-Z]+) ([a-zA-Z]+)|$|(.*))', fromMe: true}, (async (message, match) => {
 
         if(match[1] === undefined || match[2] == undefined || match[3] == undefined) {
             return await message.client.sendMessage(message.jid,Lang.CURRENCY_ERROR,MessageType.text);
@@ -244,15 +391,15 @@ if (config.WORKTYPE == 'private') {
         }
     }));
 
-    if (config.LANG == 'SI') {
+    if (config.LANG == 'TR' || config.LANG == 'AZ') {
 
-        QueenSew.newcmdaddtosew({pattern: 'tts (.*)', fromMe: true, desc: Lang.TTS_DESC}, (async (message, match) => {
+        Asena.addCommand({pattern: 'tts (.*)', fromMe: true, desc: Lang.TTS_DESC}, (async (message, match) => {
 
             if(match[1] === undefined || match[1] == "")
                 return;
     
             let 
-                LANG = 'si',
+                LANG = 'tr',
                 ttsMessage = match[1],
                 SPEED = 1.0
 
@@ -273,13 +420,13 @@ if (config.WORKTYPE == 'private') {
         }));
     }
     else {
-        QueenSew.newcmdaddtosew({pattern: 'tts (.*)', fromMe: true, desc: Lang.TTS_DESC}, (async (message, match) => {
+        Asena.addCommand({pattern: 'tts (.*)', fromMe: true, desc: Lang.TTS_DESC}, (async (message, match) => {
 
             if(match[1] === undefined || match[1] == "")
                 return;
     
             let 
-                LANG = 'en',
+                LANG = 'ml',
                 ttsMessage = match[1],
                 SPEED = 1.0
 
@@ -299,7 +446,7 @@ if (config.WORKTYPE == 'private') {
             await message.client.sendMessage(message.jid,buffer, MessageType.audio, {mimetype: Mimetype.mp4Audio, ptt: true});
         }));
     }
-    QueenSew.newcmdaddtosew({pattern: 'song ?(.*)', fromMe: true, desc: Lang.SONG_DESC}, (async (message, match) => { 
+    Asena.addCommand({pattern: 'song ?(.*)', fromMe: true, desc: Lang.SONG_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_TEXT_SONG,MessageType.text);    
         let arama = await yts(match[1]);
@@ -328,11 +475,11 @@ if (config.WORKTYPE == 'private') {
                 writer.addTag();
 
                 reply = await message.client.sendMessage(message.jid,Lang.UPLOADING_SONG,MessageType.text);
-                await message.client.sendMessage(message.jid,Buffer.from(writer.arrayBuffer), MessageType.document, {filename: 'sew' + title + '.mp3', mimetype: 'audio/mpeg',quoted: message.data});
+                await message.client.sendMessage(message.jid,Buffer.from(writer.arrayBuffer), MessageType.audio, {mimetype: Mimetype.mp4Audio, quoted: message.data, ptt: false});
             });
     }));
 
-    QueenSew.newcmdaddtosew({pattern: 'video ?(.*)', fromMe: true, desc: Lang.VIDEO_DESC}, (async (message, match) => { 
+    Asena.addCommand({pattern: 'video ?(.*)', fromMe: true, desc: Lang.VIDEO_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_VIDEO,MessageType.text);    
     
@@ -359,7 +506,7 @@ if (config.WORKTYPE == 'private') {
         });
     }));
 
-    QueenSew.newcmdaddtosew({pattern: 'yt ?(.*)', fromMe: true, desc: Lang.YT_DESC}, (async (message, match) => { 
+    Asena.addCommand({pattern: 'yt ?(.*)', fromMe: true, desc: Lang.YT_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);    
         var reply = await message.client.sendMessage(message.jid,Lang.GETTING_VIDEOS,MessageType.text);
@@ -372,14 +519,14 @@ if (config.WORKTYPE == 'private') {
     
         var mesaj = '';
         arama.all.map((video) => {
-            mesaj += '*💠' + video.title + '* \n👑 ' + video.url + '\n\n'
+            mesaj += '*' + video.title + '* - ' + video.url + '\n'
         });
 
-        await message.client.sendMessage(message.jid,'   _*👑ᴘᴏᴡᴇʀᴅ ʙʏ ꜱᴇᴡ ǫᴜᴇᴇɴ👑*_\n\n' + mesaj,MessageType.text);
+        await message.client.sendMessage(message.jid,mesaj,MessageType.text);
         await reply.delete();
     }));
 
-    QueenSew.newcmdaddtosew({pattern: 'wiki ?(.*)', fromMe: true, desc: Lang.WIKI_DESC}, (async (message, match) => { 
+    Asena.addCommand({pattern: 'wiki ?(.*)', fromMe: true, desc: Lang.WIKI_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);    
         var reply = await message.client.sendMessage(message.jid,Lang.SEARCHING,MessageType.text);
@@ -392,7 +539,7 @@ if (config.WORKTYPE == 'private') {
         await reply.delete();
     }));
 
-    QueenSew.newcmdaddtosew({pattern: 'img ?(.*)', fromMe: true, desc: Lang.IMG_DESC}, (async (message, match) => { 
+    Asena.addCommand({pattern: 'img ?(.*)', fromMe: true, desc: Lang.IMG_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);
         gis(match[1], async (error, result) => {
@@ -409,7 +556,7 @@ if (config.WORKTYPE == 'private') {
         });
     }));
 
-    QueenSew.newcmdaddtosew({ pattern: 'github ?(.*)', fromMe: true, desc: Glang.GİTHUB_DESC }, async (message, match) => {
+    Asena.addCommand({ pattern: 'github ?(.*)', fromMe: true, desc: Glang.GİTHUB_DESC }, async (message, match) => {
 
         const userName = match[1]
  
@@ -454,7 +601,7 @@ if (config.WORKTYPE == 'private') {
       },
     )
 
-    QueenSew.newcmdaddtosew({pattern: 'lyric ?(.*)', fromMe: true, desc: Slang.LY_DESC }, (async (message, match) => { 
+    Asena.addCommand({pattern: 'lyric ?(.*)', fromMe: true, desc: Slang.LY_DESC }, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid, Slang.NEED, MessageType.text);
 
@@ -469,7 +616,7 @@ if (config.WORKTYPE == 'private') {
 
     }));
 
-    QueenSew.newcmdaddtosew({pattern: "covid ?(.*)", fromMe: true, desc: Clang.COV_DESC}, (async (message, match) => {
+    Asena.addCommand({pattern: "covid ?(.*)", fromMe: true, desc: Clang.COV_DESC}, (async (message, match) => {
         if (match[1] === "") {
             try{
                 //const resp = await fetch("https://coronavirus-19-api.herokuapp.com/all").then(r => r.json());
@@ -675,7 +822,7 @@ if (config.WORKTYPE == 'private') {
 }
 else if (config.WORKTYPE == 'public') {
 
-    QueenSew.newcmdaddtosew({pattern: 'trt(?: |$)(\\S*) ?(\\S*)', desc: Lang.TRANSLATE_DESC, usage: Lang.TRANSLATE_USAGE, fromMe: false}, (async (message, match) => {
+    Asena.addCommand({pattern: 'trt(?: |$)(\\S*) ?(\\S*)', desc: Lang.TRANSLATE_DESC, usage: Lang.TRANSLATE_USAGE, fromMe: false}, (async (message, match) => {
 
         if (!message.reply_message) {
             return await message.client.sendMessage(message.jid,Lang.NEED_REPLY,MessageType.text);
@@ -690,7 +837,7 @@ else if (config.WORKTYPE == 'public') {
             return await message.client.sendMessage(message.jid,Lang.TRANSLATE_ERROR,MessageType.text)
         }
     }));
-    QueenSew.newcmdaddtosew({pattern: 'detectlang$', fromMe: false, desc: dlang_dsc}, (async (message, match) => {
+    Asena.addCommand({pattern: 'detectlang$', fromMe: false, desc: dlang_dsc}, (async (message, match) => {
 
         if (!message.reply_message) return await message.client.sendMessage(message.jid,Lang.NEED_REPLY, MessageType.text)
         const msg = message.reply_message.text
@@ -715,7 +862,7 @@ else if (config.WORKTYPE == 'public') {
         const rep_7 = res_1 + res_2 + res_3 + res_4 + res_5 + res_6
         await message.client.sendMessage(message.jid,rep_7,MessageType.text, { quoted: message.data });
     }));
-    QueenSew.newcmdaddtosew({pattern: 'currency(?: ([0-9.]+) ([a-zA-Z]+) ([a-zA-Z]+)|$|(.*))', fromMe: false}, (async (message, match) => {
+    Asena.addCommand({pattern: 'currency(?: ([0-9.]+) ([a-zA-Z]+) ([a-zA-Z]+)|$|(.*))', fromMe: false}, (async (message, match) => {
 
         if(match[1] === undefined || match[2] == undefined || match[3] == undefined) {
             return await message.client.sendMessage(message.jid,Lang.CURRENCY_ERROR,MessageType.text);
@@ -739,14 +886,14 @@ else if (config.WORKTYPE == 'public') {
             }
         }
     }));
-
-    QueenSew.newcmdaddtosew({pattern: 'tts (.*)', fromMe: false, desc: Lang.TTS_DESC}, (async (message, match) => {
+    
+    Asena.addCommand({pattern: 'tts (.*)', fromMe: false, desc: Lang.TTS_DESC}, (async (message, match) => {
 
         if(match[1] === undefined || match[1] == "")
             return;
     
         let 
-            LANG = 'en',
+            LANG = 'ml',
             ttsMessage = match[1],
             SPEED = 1.0
 
@@ -766,7 +913,7 @@ else if (config.WORKTYPE == 'public') {
         await message.client.sendMessage(message.jid,buffer, MessageType.audio, {mimetype: Mimetype.mp4Audio, ptt: true});
     }));
 
-    QueenSew.newcmdaddtosew({pattern: 'asong ?(.*)', fromMe: false, desc: 'document song - i phone working'}, (async (message, match) => { 
+    Asena.addCommand({pattern: 'song ?(.*)', fromMe: false, desc: Lang.SONG_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_TEXT_SONG,MessageType.text);    
         let arama = await yts(match[1]);
@@ -795,76 +942,11 @@ else if (config.WORKTYPE == 'public') {
                 writer.addTag();
 
                 reply = await message.client.sendMessage(message.jid,Lang.UPLOADING_SONG,MessageType.text);
-                await message.client.sendMessage(message.jid,Buffer.from(writer.arrayBuffer), MessageType.document, {filename: 'sew' + title + '.mp3', mimetype: 'audio/mpeg',quoted: message.data});
+                await message.client.sendMessage(message.jid,Buffer.from(writer.arrayBuffer), MessageType.audio, {mimetype: Mimetype.mp4Audio, quoted: message.data, ptt: false});
             });
     }));
 
-    QueenSew.newcmdaddtosew({pattern: 'song ?(.*)', fromMe: false, desc: Lang.SONG_DESC}, (async (message, match) => { 
-
-        if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_TEXT_SONG,MessageType.text);    
-        let arama = await yts(match[1]);
-        arama = arama.all;
-        if(arama.length < 1) return await message.client.sendMessage(message.jid,Lang.NO_RESULT,MessageType.text);
-        var reply = await message.client.sendMessage(message.jid,Lang.DOWNLOADING_SONG,MessageType.text);
-
-        let title = arama[0].title.replace(' ', '+');
-        let stream = ytdl(arama[0].videoId, {
-            quality: 'highestaudio',
-        });
-    
-        got.stream(arama[0].image).pipe(fs.createWriteStream(title + '.jpg'));
-        ffmpeg(stream)
-            .audioBitrate(320)
-            .save('./' + title + '.mp3')
-            .on('end', async () => {
-                const writer = new ID3Writer(fs.readFileSync('./' + title + '.mp3'));
-                writer.setFrame('TIT2', arama[0].title)
-                    .setFrame('TPE1', [arama[0].author.name])
-                    .setFrame('APIC', {
-                        type: 3,
-                        data: fs.readFileSync(title + '.jpg'),
-                        description: arama[0].description
-                    });
-                writer.addTag();
-
-                reply = await message.client.sendMessage(message.jid,Lang.UPLOADING_SONG,MessageType.text);
-                await message.client.sendMessage(message.jid,Buffer.from(writer.arrayBuffer), MessageType.audio, {mimetype: Mimetype.mp4Audio, ptt: false, quoted: message.data});
-            });
-    }));
-    QueenSew.newcmdaddtosew({pattern: 'song ?(.*)', fromMe: true, desc: Lang.SONG_DESC}, (async (message, match) => { 
-
-        if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_TEXT_SONG,MessageType.text);    
-        let arama = await yts(match[1]);
-        arama = arama.all;
-        if(arama.length < 1) return await message.client.sendMessage(message.jid,Lang.NO_RESULT,MessageType.text);
-        var reply = await message.client.sendMessage(message.jid,Lang.DOWNLOADING_SONG,MessageType.text);
-
-        let title = arama[0].title.replace(' ', '+');
-        let stream = ytdl(arama[0].videoId, {
-            quality: 'highestaudio',
-        });
-    
-        got.stream(arama[0].image).pipe(fs.createWriteStream(title + '.jpg'));
-        ffmpeg(stream)
-            .audioBitrate(320)
-            .save('./' + title + '.mp3')
-            .on('end', async () => {
-                const writer = new ID3Writer(fs.readFileSync('./' + title + '.mp3'));
-                writer.setFrame('TIT2', arama[0].title)
-                    .setFrame('TPE1', [arama[0].author.name])
-                    .setFrame('APIC', {
-                        type: 3,
-                        data: fs.readFileSync(title + '.jpg'),
-                        description: arama[0].description
-                    });
-                writer.addTag();
-
-                reply = await message.client.sendMessage(message.jid,Lang.UPLOADING_SONG,MessageType.text);
-                await message.client.sendMessage(message.jid,Buffer.from(writer.arrayBuffer), MessageType.audio, {mimetype: Mimetype.mp4Audio, ptt: false});
-            });
-    }));
-
-    QueenSew.newcmdaddtosew({pattern: 'video ?(.*)', fromMe: false, desc: Lang.VIDEO_DESC}, (async (message, match) => { 
+    Asena.addCommand({pattern: 'video ?(.*)', fromMe: false, desc: Lang.VIDEO_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_VIDEO,MessageType.text);    
     
@@ -891,7 +973,7 @@ else if (config.WORKTYPE == 'public') {
         });
     }));
 
-    QueenSew.newcmdaddtosew({pattern: 'yt ?(.*)', fromMe: false, desc: Lang.YT_DESC}, (async (message, match) => { 
+    Asena.addCommand({pattern: 'yt ?(.*)', fromMe: false, desc: Lang.YT_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);    
         var reply = await message.client.sendMessage(message.jid,Lang.GETTING_VIDEOS,MessageType.text);
@@ -904,14 +986,14 @@ else if (config.WORKTYPE == 'public') {
     
         var mesaj = '';
         arama.all.map((video) => {
-            mesaj += '*💠' + video.title + '* \n👑 ' + video.url + '\n\n'
+            mesaj += '*' + video.title + '* - ' + video.url + '\n'
         });
 
-        await message.client.sendMessage(message.jid,'   _*👑ᴘᴏᴡᴇʀᴅ ʙʏ ꜱᴇᴡ ǫᴜᴇᴇɴ👑*_\n\n' + mesaj,MessageType.text);
+        await message.client.sendMessage(message.jid,mesaj,MessageType.text);
         await reply.delete();
     }));
 
-    QueenSew.newcmdaddtosew({pattern: 'wiki ?(.*)', fromMe: false, desc: Lang.WIKI_DESC}, (async (message, match) => { 
+    Asena.addCommand({pattern: 'wiki ?(.*)', fromMe: false, desc: Lang.WIKI_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);    
         var reply = await message.client.sendMessage(message.jid,Lang.SEARCHING,MessageType.text);
@@ -924,7 +1006,7 @@ else if (config.WORKTYPE == 'public') {
         await reply.delete();
     }));
 
-    QueenSew.newcmdaddtosew({pattern: 'img ?(.*)', fromMe: false, desc: Lang.IMG_DESC}, (async (message, match) => { 
+    Asena.addCommand({pattern: 'img ?(.*)', fromMe: false, desc: Lang.IMG_DESC}, (async (message, match) => { 
 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);
         gis(match[1], async (error, result) => {
@@ -941,7 +1023,7 @@ else if (config.WORKTYPE == 'public') {
         });
     }));
 
-    QueenSew.newcmdaddtosew({ pattern: 'github ?(.*)', fromMe: true, desc: Glang.GİTHUB_DESC }, async (message, match) => {
+    Asena.addCommand({ pattern: 'github ?(.*)', fromMe: false, desc: Glang.GİTHUB_DESC }, async (message, match) => {
 
         const userName = match[1]
  
@@ -984,9 +1066,9 @@ else if (config.WORKTYPE == 'public') {
             async (err) => await message.client.sendMessage(message.jid, Glang.NOT, MessageType.text),
           )
       },
-    ) 
+    )
 
-    QueenSew.newcmdaddtosew({pattern: 'lyric ?(.*)', fromMe: false, desc: Slang.LY_DESC }, (async (message, match) => {
+    Asena.addCommand({pattern: 'lyric ?(.*)', fromMe: false, desc: Slang.LY_DESC }, (async (message, match) => {
 
         if (match[1] === '') return await message.client.sendMessage(message.jid, Slang.NEED, MessageType.text);
 
@@ -1000,143 +1082,8 @@ else if (config.WORKTYPE == 'public') {
         await message.client.sendMessage(message.jid, Buffer.from(buffer.data),  MessageType.image, {caption: `*${Slang.ARAT}* ` + '```' + `${match[1]}` + '```' + `\n*${Slang.BUL}* ` + '```' + tit + '```' + `\n*${Slang.AUT}* ` + '```' + son + '```' + `\n*${Slang.SLY}*\n\n` + aut });
 
     }));
-    QueenSew.newcmdaddtosew({pattern: 'tts (.*)', fromMe: true, desc: Lang.TTS_DESC}, (async (message, match) => {
 
-        if(match[1] === undefined || match[1] == "")
-            return;
-    
-        let 
-            LANG = 'en',
-            ttsMessage = match[1],
-            SPEED = 1.0
-
-        if(langMatch = match[1].match("\\{([a-z]{2})\\}")) {
-            LANG = langMatch[1]
-            ttsMessage = ttsMessage.replace(langMatch[0], "")
-        } 
-        if(speedMatch = match[1].match("\\{([0].[0-9]+)\\}")) {
-            SPEED = parseFloat(speedMatch[1])
-            ttsMessage = ttsMessage.replace(speedMatch[0], "")
-        }
-    
-        var buffer = await googleTTS.synthesize({
-            text: ttsMessage,
-            voice: LANG
-        });
-        await message.client.sendMessage(message.jid,buffer, MessageType.audio, {mimetype: Mimetype.mp4Audio, ptt: true});
-    }));
-
-    QueenSew.newcmdaddtosew({pattern: 'asong ?(.*)', fromMe: true}, (async (message, match) => { 
-
-        if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_TEXT_SONG,MessageType.text);    
-        let arama = await yts(match[1]);
-        arama = arama.all;
-        if(arama.length < 1) return await message.client.sendMessage(message.jid,Lang.NO_RESULT,MessageType.text);
-        var reply = await message.client.sendMessage(message.jid,Lang.DOWNLOADING_SONG,MessageType.text);
-
-        let title = arama[0].title.replace(' ', '+');
-        let stream = ytdl(arama[0].videoId, {
-            quality: 'highestaudio',
-        });
-    
-        got.stream(arama[0].image).pipe(fs.createWriteStream(title + '.jpg'));
-        ffmpeg(stream)
-            .audioBitrate(320)
-            .save('./' + title + '.mp3')
-            .on('end', async () => {
-                const writer = new ID3Writer(fs.readFileSync('./' + title + '.mp3'));
-                writer.setFrame('TIT2', arama[0].title)
-                    .setFrame('TPE1', [arama[0].author.name])
-                    .setFrame('APIC', {
-                        type: 3,
-                        data: fs.readFileSync(title + '.jpg'),
-                        description: arama[0].description
-                    });
-                writer.addTag();
-
-                reply = await message.client.sendMessage(message.jid,Lang.UPLOADING_SONG,MessageType.text);
-                await message.client.sendMessage(message.jid,Buffer.from(writer.arrayBuffer), MessageType.document, {filename: 'sew' + title + '.mp3', mimetype: 'audio/mpeg',quoted: message.data});
-            });
-    }));
-
-    QueenSew.newcmdaddtosew({pattern: 'video ?(.*)', fromMe: true, desc: Lang.VIDEO_DESC}, (async (message, match) => { 
-
-        if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_VIDEO,MessageType.text);    
-    
-        var VID = '';
-        try {
-            if (match[1].includes('watch')) {
-                var tsts = match[1].replace('watch?v=', '')
-                var alal = tsts.split('/')[3]
-                VID = alal
-            } else {     
-                VID = match[1].split('/')[3]
-            }
-        } catch {
-            return await message.client.sendMessage(message.jid,Lang.NO_RESULT,MessageType.text);
-        }
-        var reply = await message.client.sendMessage(message.jid,Lang.DOWNLOADING_VIDEO,MessageType.text);
-
-        var yt = ytdl(VID, {filter: format => format.container === 'mp4' && ['720p', '480p', '360p', '240p', '144p'].map(() => true)});
-        yt.pipe(fs.createWriteStream('./' + VID + '.mp4'));
-
-        yt.on('end', async () => {
-            reply = await message.client.sendMessage(message.jid,Lang.UPLOADING_VIDEO,MessageType.text);
-            await message.client.sendMessage(message.jid,fs.readFileSync('./' + VID + '.mp4'), MessageType.video, {mimetype: Mimetype.mp4});
-        });
-    }));
-
-    QueenSew.newcmdaddtosew({pattern: 'yt ?(.*)', fromMe: true, desc: Lang.YT_DESC}, (async (message, match) => { 
-
-        if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);    
-        var reply = await message.client.sendMessage(message.jid,Lang.GETTING_VIDEOS,MessageType.text);
-
-        try {
-            var arama = await yts(match[1]);
-        } catch {
-            return await message.client.sendMessage(message.jid,Lang.NOT_FOUND,MessageType.text);
-        }
-    
-        var mesaj = '';
-        arama.all.map((video) => {
-            mesaj += '*💠' + video.title + '* \n👑 ' + video.url + '\n\n'
-        });
-
-        await message.client.sendMessage(message.jid,'   _*👑ᴘᴏᴡᴇʀᴅ ʙʏ ꜱᴇᴡ ǫᴜᴇᴇɴ👑*_\n\n' + mesaj,MessageType.text);
-        await reply.delete();
-    }));
-
-    QueenSew.newcmdaddtosew({pattern: 'wiki ?(.*)', fromMe: true, desc: Lang.WIKI_DESC}, (async (message, match) => { 
-
-        if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);    
-        var reply = await message.client.sendMessage(message.jid,Lang.SEARCHING,MessageType.text);
-
-        var arama = await wiki({ apiUrl: 'https://' + config.LANG + '.wikipedia.org/w/api.php' })
-            .page(match[1]);
-
-        var info = await arama.rawContent();
-        await message.client.sendMessage(message.jid, info, MessageType.text);
-        await reply.delete();
-    }));
-
-    QueenSew.newcmdaddtosew({pattern: 'img ?(.*)', fromMe: true, desc: Lang.IMG_DESC}, (async (message, match) => { 
-
-        if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);
-        gis(match[1], async (error, result) => {
-            for (var i = 0; i < (result.length < 5 ? result.length : 5); i++) {
-                var get = got(result[i].url, {https: {rejectUnauthorized: false}});
-                var stream = get.buffer();
-                
-                stream.then(async (image) => {
-                    await message.client.sendMessage(message.jid,image, MessageType.image);
-                });
-            }
-
-            message.reply(Lang.IMG.format((result.length < 5 ? result.length : 5), match[1]));
-        });
-    }));
-
-    QueenSew.newcmdaddtosew({pattern: "covid ?(.*)", fromMe: false, desc: Clang.COV_DESC}, (async (message, match) => {
+    Asena.addCommand({pattern: "covid ?(.*)", fromMe: false, desc: Clang.COV_DESC}, (async (message, match) => {
         if (match[1] === "") {
             try{
                 //const resp = await fetch("https://coronavirus-19-api.herokuapp.com/all").then(r => r.json());
@@ -1330,18 +1277,6 @@ else if (config.WORKTYPE == 'public') {
                 await message.reply(`Error : \n${err.message}`, MessageType.text)
             }
         } 
-        else if (match[1] === "sl" || match[1] === "Sl" || match[1] === "SL" || match[1] === "sri" || match[1].includes('lanka') ) {
-            try{
-                const respo = await got("https://coronavirus-19-api.herokuapp.com/countries/Sri%20Lanka").then(async ok  => {
-                    resp = JSON.parse(ok.body);
-                    await message.reply(`🇱🇰 *Datas for SRI Lanka:*\n😷 *Total Cases:* ${resp.cases}\n🏥 *Daily Cases:* ${resp.todayCases}\n⚰️ *Total Deaths:* ${resp.deaths}\n☠️ *Daily Deaths:* ${resp.todayDeaths}\n💊 *Total Recovered:* ${resp.recovered}\n😷 *Active Cases:* ${resp.active}\n🆘 *Critical Cases:* ${resp.critical}\n🧪 *Total Test:* ${resp.totalTests}`);
-
-                });
-
-            } catch (err) {
-                await message.reply(`Error : \n${err.message}`, MessageType.text)
-            }
-        }
         else {
             return await message.client.sendMessage(
                 message.jid,
@@ -1351,5 +1286,4 @@ else if (config.WORKTYPE == 'public') {
         }
     }));
     
-}
 }
