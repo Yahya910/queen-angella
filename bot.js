@@ -139,7 +139,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp...')}`);
         });
 
         console.log(
-            chalk.green.bold('✅ IsuwaKing working!')
+            chalk.green.bold('✅ දැන් බෝට් ඔන් එකෙ!')
         );
         await new Promise(r => setTimeout(r, 1100));
 
