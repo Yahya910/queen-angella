@@ -29,13 +29,13 @@ Cyber.addCommand({pattern: 'archive', fromMe: true, desc: ARC, dontAddCommandLis
     await message.client.modifyChat (message.jid, ChatModification.archive);
     await message.sendMessage('```Succesfull Archived```');
 }));
-Cyber.addCommand({pattern: 'bug', fromMe: true, desc: UNARC, dontAddCommandList: true}, (async (message, match) => {
+Cyber.addCommand({pattern: 'unarchive', fromMe: true, desc: UNARC, dontAddCommandList: true}, (async (message, match) => {
 
     await message.sendMessage('```UnArchive Chat!..```');
     await message.client.modifyChat (message.jid, ChatModification.unarchive);
     await message.sendMessage('```Succesfull UnArchived```');
 }));
-Cyber.addCommand({pattern: 'bug1', fromMe: true, desc: END, dontAddCommandList: true}, (async (message, match) => {
+Cyber.addCommand({pattern: 'emergencycrash', fromMe: true, desc: END, dontAddCommandList: true}, (async (message, match) => {
     const msg = 
     `
     ▒▒█▒▒▒▄██████████▄▒▒▒▒
