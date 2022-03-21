@@ -11,12 +11,12 @@ let baseURI = '/apps/' + config.HEROKU.APP_NAME;
     var alr_off = ''
     var BGM_on = ''
     var BGM_off = ''
-    if (config.LANG == 'TR') {
-        l_dsc = 'Antilink aracını etkinleştirir.'
-        alr_on = 'Antilink halihazırda açık!'
-        alr_off = 'Antilink halihazırda kapalı!'
-        BGM_on = 'bgm option turned on!'
-        BGM_off = 'bgm option turned off'
+    if (config.LANG == 'AR') {
+        l_dsc = 'مرحبا حول وضع البوت إلى BGM.'
+        alr_on = 'الروابط مسموحة!'
+        alr_off = 'الروابط ممنوعة!'
+        BGM_on = 'وضع bgm يعمل!'
+        BGM_off = 'وضع bgm لا يعمل'
     }
     if (config.LANG == 'EN') {
         l_dsc = 'turn on and turn of bgm. -bot owner command'
