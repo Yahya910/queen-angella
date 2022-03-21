@@ -77,13 +77,13 @@ Asena.addCommand({ pattern: 'igtv ?(.*)', fromMe: false, desc: tvig }, async (me
       .then(async (response) => {
 
         const {
-          likes, 
-          comment, 
-          username,
-          full_name, 
-          caption,
-          video_url, 
-          duration,
+          لايكات, 
+          التعليقات, 
+          اليوزر,
+          الاسم الكامل, 
+          اسم الفيديو,
+          رابط الفيديو, 
+          مدة الفيديو,
         } = response.data.result
 
         const tvdat = await axios.get(video_url, 
