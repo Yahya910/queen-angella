@@ -41,7 +41,7 @@ async function megalink() {
 }
 megalink()
 var ldc = ''
-if (Config.LANG == 'AZ') ldc = '*Bağlantı Aşkarlandı!*'
+if (Config.LANG == 'AR') ldc = '*ممنوع الروابط باي🐉!*'
 if (Config.LANG == 'TR') ldc = '*‎Link Tespit Edildi!*'
 if (Config.LANG == 'EN') ldc = '*Link Detected! okey bye \n\n 🕊🕊*'
 if (Config.LANG == 'ML') ldc = '*ലിങ്ക് കണ്ടെത്തി!*'
