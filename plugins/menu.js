@@ -17,7 +17,7 @@ Asena.addCommand({pattern: 'menu', fromMe: false, desc: Lang.WP}, (async (messag
 
     var respoimage = await axios.get(`${r_text[i]}`, { responseType: 'arraybuffer' })
 
-    await message.sendMessage(Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: `⛦━━━✨️*𝙠𝙞𝙣𝙜 𝙞𝙨𝙪𝙬𝙖*✨️━━━⛦
+    await message.sendMessage(Buffer(respoimage.data), MessageType.image, {mimetype: Mimetype.png, caption: `⛦━━━✨️*SUIIIIIIII*✨️━━━⛦
 
 
 *مرحبا كونيتشوا انا بوت متعدد الميزات.
