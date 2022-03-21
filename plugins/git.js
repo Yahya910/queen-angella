@@ -27,7 +27,7 @@ Asena.addCommand({pattern: 'git', fromMe: false, desc: "Gives github link of the
 
  *ايانوكوجي بوت من تطوير و صنع يحيى تحقق من تحديث و استمتع*
 
- ◼◼❏❏©drips ®ᵏⁱⁿᵍ ᴵˢᵘʷᵃ
+ ◼◼❏❏©2022
 `}) 
 
 }));
